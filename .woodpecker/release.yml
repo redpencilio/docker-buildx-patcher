@@ -11,7 +11,7 @@ steps:
       repo: "milanmeu/frontend-server-collection"
       tags: latest
       platforms: linux/amd64,linux/arm64
-      dockerfile: docker-buildx/Dockerfile
+      context: docker-buildx
       username:
         from_secret: docker_username
       password:
