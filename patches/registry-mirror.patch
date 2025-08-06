@@ -1,11 +1,12 @@
-diff --git a/plugin/plugin.go b/plugin/plugin.go
-index d934770..150f1b1 100644
---- a/plugin/plugin.go
-+++ b/plugin/plugin.go
+Index: docker-buildx-patcher/docker-buildx/plugin/plugin.go
+===================================================================
+--- docker-buildx-patcher.orig/docker-buildx/plugin/plugin.go
++++ docker-buildx-patcher/docker-buildx/plugin/plugin.go
 @@ -155,6 +155,7 @@ func (p *Plugin) Flags() []cli.Flag {
-                        Name:        "daemon.mirror",
-                        Sources:     cli.EnvVars("PLUGIN_MIRROR", "DOCKER_PLUGIN_MIRROR"),
-                        Usage:       "sets a registry mirror to pull images",
-+                       Value:       "https://docker-registry-mirror.redpencil.io",
-                        Destination: &p.Settings.Daemon.Mirror,
-                },
+ 			Name:        "daemon.mirror",
+ 			Sources:     cli.EnvVars("PLUGIN_MIRROR", "DOCKER_PLUGIN_MIRROR"),
+ 			Usage:       "sets a registry mirror to pull images",
++			Value:       "https://docker-registry-mirror.redpencil.io",
+ 			Destination: &p.Settings.Daemon.Mirror,
+ 		},
+ 		&cli.StringFlag{

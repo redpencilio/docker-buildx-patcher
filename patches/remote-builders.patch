@@ -1,18 +1,22 @@
-diff --git a/plugin/plugin.go b/plugin/plugin.go
-index d934770..b237fdb 100644
---- a/plugin/plugin.go
-+++ b/plugin/plugin.go
+Index: docker-buildx-patcher/docker-buildx/plugin/plugin.go
+===================================================================
+--- docker-buildx-patcher.orig/docker-buildx/plugin/plugin.go
++++ docker-buildx-patcher/docker-buildx/plugin/plugin.go
 @@ -230,11 +230,16 @@ func (p *Plugin) Flags() []cli.Flag {
-                },
--               &cli.StringSliceFlag{
-+               &plugin_cli.StringSliceFlag{
-                        Name:        "daemon.remote-builder",
-                        Sources:     cli.EnvVars("PLUGIN_REMOTE_BUILDERS", "REMOTE_BUILDERS"),
-                        Usage:       "adds remote builders to be used by buildx",
-+                       Value:       []string {"root@rpio-arm64-builder-1.s.redhost.be","root@milan-test.s.redhost.be"},
-                        Destination: &p.Settings.Daemon.RemoteBuilders,
-+                       Config: plugin_cli.StringSliceConfig{
-+                               Delimiter:    " ",
-+                               EscapeString: "\\",
-+                       },
-                },
+ 			Usage:       "adds a ssh key to be used by the daemon",
+ 			Destination: &p.Settings.Daemon.SshKey,
+ 		},
+-		&cli.StringSliceFlag{
++		&plugin_cli.StringSliceFlag{
+ 			Name:        "daemon.remote-builder",
+ 			Sources:     cli.EnvVars("PLUGIN_REMOTE_BUILDERS", "REMOTE_BUILDERS"),
+ 			Usage:       "adds remote builders to be used by buildx",
++			Value:       []string {"root@rpio-arm64-builder-1.s.redhost.be","root@milan-test.s.redhost.be"},
+ 			Destination: &p.Settings.Daemon.RemoteBuilders,
++			Config: plugin_cli.StringSliceConfig{
++				Delimiter:    " ",
++				EscapeString: "\\",
++			},
+ 		},
+ 		&cli.BoolFlag{
+ 			Name:        "daemon.buildkit-debug",
