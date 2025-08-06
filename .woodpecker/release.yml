@@ -2,14 +2,13 @@ steps:
   patch:
     image: alpine:latest
     commands:
-      - echo "Starting release process..."
+      - apk add --no-cache git quilt
       - git clone https://codeberg.org/woodpecker-plugins/docker-buildx.git
-      - apk add --no-cache quilt
       - quilt push -a
   build-and-push:
     image: woodpeckerci/plugin-docker-buildx:6.0.2
     settings:
-      repo: "${CI_REPO_OWNER}/${CI_REPO_NAME}"
+      repo: "milanmeu/frontend-server-collection"
       tags: latest
       platforms: linux/amd64,linux/arm64
       username:
