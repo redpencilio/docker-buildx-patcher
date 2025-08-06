@@ -6,9 +6,9 @@ steps:
       - git clone https://codeberg.org/woodpecker-plugins/docker-buildx.git
       - quilt push -a
   build-and-push:
-    image: woodpeckerci/plugin-docker-buildx:6.0.2
+    image: woodpeckerci/plugin-docker-buildx:latest
     settings:
-      repo: "milanmeu/frontend-server-collection"
+      repo: milanmeu/redpencil-docker-buildx
       tags: latest
       platforms: linux/amd64,linux/arm64
       context: docker-buildx
@@ -19,7 +19,6 @@ steps:
         from_secret: docker_password
       ssh_key:
         from_secret: ssh_key
-      dry_run: true
 when:
   - event: [push, manual]
     branch: [master, main]
