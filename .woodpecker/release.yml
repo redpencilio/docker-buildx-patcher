@@ -20,5 +20,5 @@ steps:
       ssh_key:
         from_secret: ssh_key
 when:
-  - event: [push, manual]
+  - event: [push, manual, cron]
     branch: [master, main]
