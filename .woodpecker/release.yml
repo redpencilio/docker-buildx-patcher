@@ -1,0 +1,24 @@
+steps:
+  patch:
+    image: alpine:latest
+    commands:
+      - echo "Starting release process..."
+      - git clone https://codeberg.org/woodpecker-plugins/docker-buildx.git
+      - apk add --no-cache quilt
+      - quilt push -a
+  build-and-push:
+    image: woodpeckerci/plugin-docker-buildx:6.0.2
+    settings:
+      repo: "${CI_REPO_OWNER}/${CI_REPO_NAME}"
+      tags: latest
+      platforms: linux/amd64,linux/arm64
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      ssh_key:
+        from_secret: ssh_key
+      dry_run: true
+when:
+  - event: [push, manual]
+    branch: [master, main]
