@@ -5,13 +5,12 @@ steps:
       - apk add --no-cache git quilt
       - git clone https://codeberg.org/woodpecker-plugins/docker-buildx.git
       - quilt push -a
-      - PLUGIN_VERSION=$(git describe --tags --match="v*" --abbrev=0)
-      - export PLUGIN_VERSION
+      - echo latest > .tags
+      - git -C docker-buildx describe --tags --match="v*" --abbrev=0 >> .tags
   build-and-push:
     image: woodpeckerci/plugin-docker-buildx:latest
     settings:
       repo: milanmeu/redpencil-docker-buildx
-      tags: latest
       platforms: linux/amd64,linux/arm64
       context: docker-buildx
       dockerfile: docker-buildx/Dockerfile
