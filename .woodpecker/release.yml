@@ -11,7 +11,7 @@ steps:
     image: woodpeckerci/plugin-docker-buildx:latest
     settings:
       repo: milanmeu/redpencil-docker-buildx
-      tags: ${PLUGIN_VERSION},latest
+      tags: latest
       platforms: linux/amd64,linux/arm64
       context: docker-buildx
       dockerfile: docker-buildx/Dockerfile
