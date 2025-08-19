@@ -5,7 +5,7 @@ steps:
       - apk add --no-cache git quilt
       - git clone https://codeberg.org/woodpecker-plugins/docker-buildx.git
       - quilt push -a
-      - echo latest > .tags
+      - echo -n latest, > .tags
       - git -C docker-buildx describe --tags --match="v*" --abbrev=0 >> .tags
   build-and-push:
     image: woodpeckerci/plugin-docker-buildx:latest
