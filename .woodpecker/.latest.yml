@@ -18,8 +18,6 @@ steps:
         from_secret: docker_username
       password:
         from_secret: docker_password
-      ssh_key:
-        from_secret: ssh_key
 when:
   - event: [push, manual, cron]
     branch: [master, main]
