@@ -11,7 +11,7 @@ Index: docker-buildx-patcher/docker-buildx/plugin/plugin.go
  			Name:        "daemon.remote-builder",
  			Sources:     cli.EnvVars("PLUGIN_REMOTE_BUILDERS", "REMOTE_BUILDERS"),
  			Usage:       "adds remote builders to be used by buildx",
-+			Value:       []string {"root@rpio-arm64-builder-1.s.redhost.be","root@milan-test.s.redhost.be"},
++			Value:       []string {"root@rpio-arm64-builder-1.s.redhost.be","root@rpio-amd-x86-builder-1.s.redhost.be"},
  			Destination: &p.Settings.Daemon.RemoteBuilders,
 +			Config: plugin_cli.StringSliceConfig{
 +				Delimiter:    " ",
